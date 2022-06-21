@@ -17,8 +17,8 @@ runs:
     - id: meta
       shell: bash
       run: |
-        echo "::set-output name=bake-file::${GITHUB_ACTION_PATH}github-metadata-action.hcl"
+        echo "::set-output name=bake-file::${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
     - name: Bake definition
       shell: bash
       run: |
-        docker buildx bake -f "${GITHUB_ACTION_PATH}github-metadata-action.hcl" --print github-metadata-action
+        docker buildx bake -f "${GITHUB_ACTION_PATH}/github-metadata-action.hcl" --print github-metadata-action
