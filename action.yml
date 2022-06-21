@@ -15,6 +15,7 @@ runs:
   using: composite
   steps:
     - id: meta
+      name: Processing GitHub context
       shell: bash
       run: |
         echo "::set-output name=bake-file::${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
