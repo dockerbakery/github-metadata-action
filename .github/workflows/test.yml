@@ -15,4 +15,8 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Test runs
+        id: meta
         uses: ./
+
+      - name: Action output
+        run: echo "${{ steps.meta.outputs.bake-file }}"
