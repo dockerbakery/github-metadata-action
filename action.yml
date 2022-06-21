@@ -18,6 +18,7 @@ runs:
       name: GitHub Metadata action
       shell: bash
       run: |
+        echo
         echo "::group::Processing GitHub context"
         echo "::set-output name=bake-file::${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
         echo "::endgroup::"
