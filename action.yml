@@ -4,11 +4,15 @@ description: GitHub Metadata Action for Docker Buildx Bake.
 outputs:
   bake-file:
     description: Bake definiton file
-    value: ${{ github.action_path }}/github-metadata-action.hcl
+    value: ${{ steps.meta.outputs.bake-file }}
 
 runs:
   using: composite
   steps:
+    - id: meta
+      shell: bash
+      run: |
+        echo "::set-output name=bake-file::${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
     - name: Bake definition
       shell: bash
       run: |
