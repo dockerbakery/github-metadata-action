@@ -19,4 +19,9 @@ jobs:
         uses: ./
 
       - name: Action output
-        run: echo "${{ steps.meta.outputs.bake-file }}"
+        run: |
+          echo "${{ steps.meta.outputs.bake-file }}"
+
+      - name: Validate
+        run: |
+          docker buildx bake -f "${{ steps.meta.outputs.bake-file }}" --print github-metadata-action
