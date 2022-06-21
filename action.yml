@@ -12,4 +12,4 @@ runs:
     - name: Bake definition
       shell: bash
       run: |
-        docker buildx bake -f github-metadata-action.hcl --print "${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
+        docker buildx bake -f "${GITHUB_ACTION_PATH}/github-metadata-action.hcl" --print github-metadata-action
