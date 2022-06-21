@@ -1,0 +1,13 @@
+name: github-metadata-action
+description: GitHub Metadata Action for Docker Buildx Bake.
+outputs:
+  bake-file:
+    description: "Bake definiton file"
+    value: "${{ github.action_path }}/github-metadata-action.hcl"
+runs:
+  using: composite
+  steps:
+    - name: Bake definition
+      shell: bash
+      run: |
+        docker buildx bake -f github-metadata-action.hcl --print "${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
