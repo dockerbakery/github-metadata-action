@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "::group::Processing GitHub context"
 echo "::set-output name=bake-file::${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
 echo "Output:"
