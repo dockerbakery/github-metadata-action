@@ -1,5 +1,10 @@
 name: GitHub Metadata action
 description: GitHub Metadata Action for Docker Buildx Bake.
+author: Docker Baker
+
+branding:
+  color: white
+  icon: git-branch
 
 outputs:
   bake-file:
