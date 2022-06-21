@@ -119,4 +119,5 @@ jobs:
 ## Resources
 
 - [GitHub Action Environment variables](https://docs.github.com/en/actions/learn-github-actions/environment-variables)
+- [Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions)
 - [Bake File Definitions](https://github.com/docker/buildx/blob/master/docs/guides/bake/file-definition.md)
