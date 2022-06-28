@@ -1,8 +1,3 @@
-variable "CI" {
-    # Always set to true
-    default = true
-}
-
 variable "GITHUB_ACTOR" {
     # The name of the person or app that initiated the workflow. For example, 'octocat'.
     default = "unknown_actor"
@@ -85,7 +80,6 @@ variable "RUNNER_OS" {
 
 target "github-metadata-action" {
     args = {
-        CI = "${CI}"
         GITHUB_ACTOR = "${GITHUB_ACTOR}"
         GITHUB_BASE_REF = "${GITHUB_BASE_REF}"
         GITHUB_HEAD_REF = "${GITHUB_HEAD_REF}"
