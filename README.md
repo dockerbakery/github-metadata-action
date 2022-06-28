@@ -90,10 +90,7 @@ jobs:
   },
   "target": {
     "github-metadata-action": {
-      "context": ".",
-      "dockerfile": "Dockerfile",
       "args": {
-        "CI": "true",
         "GITHUB_ACTOR": "unknown_actor",
         "GITHUB_BASE_REF": "main",
         "GITHUB_HEAD_REF": "unknown-branch",
