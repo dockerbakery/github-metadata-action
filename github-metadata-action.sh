@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "::group::Processing GitHub context"
-echo "bake-file=${GITHUB_ACTION_PATH}/github-metadata-action.hcl" >> $GITHUB_STATE
+echo "bake-file=${GITHUB_ACTION_PATH}/github-metadata-action.hcl" >> $GITHUB_OUTPUT
 echo "Output:"
 echo "- bake-file = ${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
 echo "::endgroup::"
