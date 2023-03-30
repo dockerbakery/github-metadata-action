@@ -64,7 +64,7 @@ jobs:
 
       - name: GitHub meta
         id: github-meta
-        uses: dockerbakery/github-metadata-action@v1
+        uses: dockerbakery/github-metadata-action@v2
 
       - uses: docker/bake-action@v2
         with:
