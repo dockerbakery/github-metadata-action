@@ -24,7 +24,9 @@ jobs:
           echo "${{ steps.meta.outputs.bake-file }}"
 
       - name: Action env
-        run: env
+        run: |
+          env | grep GITHUB_
+          env | grep RUNNER_
 
       - name: Validate
         run: |
