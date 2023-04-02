@@ -1,11 +1,21 @@
 #!/bin/bash
 
-echo "::group::Processing GitHub context"
-echo "bake-file=${GITHUB_ACTION_PATH}/github-metadata-action.hcl" >> $GITHUB_OUTPUT
+# GitHub Actions helpers
+gh_group() { echo "::group::$1"; }
+gh_group_end() { echo "::endgroup::"; }
+gh_set_output() { echo "$1=$2" >> "$GITHUB_OUTPUT"; }
+gh_set_env() { 
+    export "$1"="$2"
+    echo "$1=$2" >> "$GITHUB_ENV";
+}
+
+# Main
+gh_group "Processing GitHub context"
+gh_set_output "bake-file" "${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
 echo "Output:"
 echo "- bake-file = ${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
-echo "::endgroup::"
+gh_group_end
 
-echo "::group::Bake definition"
+gh_group "Bake definition"
 docker buildx bake -f "${GITHUB_ACTION_PATH}/github-metadata-action.hcl" --print github-metadata-action
-echo "::endgroup::"
+gh_group_end
