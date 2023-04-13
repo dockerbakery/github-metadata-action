@@ -46,13 +46,19 @@ variable "RUNNER_NAME" {}
 # The operating system of the runner executing the job. Possible values are Linux, Windows, or macOS. For example, Windows
 variable "RUNNER_OS" {}
 
-// Targets
+# Secrets
+# GitHub provides a token that you can use to authenticate on behalf of GitHub Actions
+variable "GITHUB_TOKEN_FILE" {
+    default = "/run/secrets/GITHUB_TOKEN"
+}
+
+# Targets
 target "github-metadata-action" {
     secret = [
-        // GitHub provides a token that you can use to authenticate on behalf of GitHub Actions
         "id=GITHUB_TOKEN,env=GITHUB_TOKEN"
     ]
     args = {
+        GITHUB_TOKEN_FILE = "${GITHUB_TOKEN_FILE}"
         GITHUB_ACTOR = "${GITHUB_ACTOR}"
         GITHUB_BASE_REF = "${GITHUB_BASE_REF}"
         GITHUB_HEAD_REF = "${GITHUB_HEAD_REF}"
