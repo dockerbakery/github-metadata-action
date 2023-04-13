@@ -16,7 +16,7 @@ runs:
   steps:
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
-    - id: meta
-      name: GitHub Metadata action
+    - name: GitHub Metadata action
+      id: meta
       run: github-metadata-action.sh
       shell: bash
