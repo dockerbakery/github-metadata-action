@@ -47,8 +47,11 @@ variable "RUNNER_NAME" {}
 variable "RUNNER_OS" {}
 
 // Targets
-
 target "github-metadata-action" {
+    secret = [
+        // GitHub provides a token that you can use to authenticate on behalf of GitHub Actions
+        "id=GITHUB_TOKEN,env=GITHUB_TOKEN"
+    ]
     args = {
         GITHUB_ACTOR = "${GITHUB_ACTOR}"
         GITHUB_BASE_REF = "${GITHUB_BASE_REF}"
