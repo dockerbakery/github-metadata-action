@@ -9,8 +9,12 @@ gh_set_env() {
     echo "$1=$2" >> "$GITHUB_ENV";
 }
 
+# Inputs
+GITHUB_METADATA_ACTION_GITHUB_TOKEN="$1"
+
 # Main
 gh_group "Processing GitHub context"
+gh_set_env "GITHUB_METADATA_ACTION_GITHUB_TOKEN" "${GITHUB_METADATA_ACTION_GITHUB_TOKEN}"
 gh_set_output "bake-file" "${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
 echo "Output:"
 echo "- bake-file = ${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
