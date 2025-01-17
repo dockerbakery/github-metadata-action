@@ -58,7 +58,6 @@ variable "RUNNER_OS" {}
 # Secrets
 # GitHub provides a token that you can use to authenticate on behalf of GitHub Actions
 variable "GITHUB_METADATA_ACTION_GITHUB_TOKEN" {}
-variable "GITHUB_METADATA_ACTION_GITHUB_TOKEN_FILE" { default = "/run/secrets/GITHUB_TOKEN" }
 
 # Targets
 target "github-metadata-action" {
@@ -66,10 +65,6 @@ target "github-metadata-action" {
         "id=GITHUB_TOKEN,env=GITHUB_METADATA_ACTION_GITHUB_TOKEN"
     ]
     args = {
-        # Secrets
-        GITHUB_TOKEN_FILE = "${GITHUB_METADATA_ACTION_GITHUB_TOKEN_FILE}"
-
-        # Variables
         GITHUB_ACTOR = "${GITHUB_ACTOR}"
         GITHUB_BASE_REF = "${GITHUB_BASE_REF}"
         GITHUB_HEAD_REF = "${GITHUB_HEAD_REF}"
