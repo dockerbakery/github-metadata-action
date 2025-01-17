@@ -34,11 +34,20 @@ variable "GITHUB_RUN_ATTEMPT" {}
 # A unique number for each workflow run within a repository. This number does not change if you re-run the workflow run. For example, '1658821493'.
 variable "GITHUB_RUN_ID" {}
 
+# A unique number for each run of a particular workflow in a repository. This number begins at 1 for the workflow's first run, and increments with each new run. This number does not change if you re-run the workflow run. For example, '3'.
+variable "GITHUB_RUN_NUMBER" {}
+
 # The commit SHA that triggered the workflow. The value of this commit SHA depends on the event that triggered the workflow. For more information, see Events that trigger workflows. For example, 'ffac537e6cbbf934b08745a378932722df287a53'.
 variable "GITHUB_SHA" {}
 
+# The username of the user that initiated the workflow run. If the workflow run is a re-run, this value may differ from 'github.actor'. Any workflow re-runs will use the privileges of 'github.actor', even if the actor initiating the re-run ('github.triggering_actor') has different privileges.
+variable "GITHUB_TRIGGERING_ACTOR" {}
+
 # The architecture of the runner executing the job. Possible values are X86, X64, ARM, or ARM64.
 variable "RUNNER_ARCH" {}
+
+# The environment of the runner executing the job. Possible values are: 'github-hosted' for GitHub-hosted runners provided by GitHub, and 'self-hosted' for self-hosted runners configured by the repository owner.
+variable "RUNNER_ENVIRONMENT" {}
 
 # The name of the runner executing the job. For example, 'Hosted Agent'
 variable "RUNNER_NAME" {}
@@ -57,8 +66,10 @@ target "github-metadata-action" {
         "id=GITHUB_TOKEN,env=GITHUB_METADATA_ACTION_GITHUB_TOKEN"
     ]
     args = {
+        # Secrets
         GITHUB_TOKEN_FILE = "${GITHUB_METADATA_ACTION_GITHUB_TOKEN_FILE}"
-        
+
+        # Variables
         GITHUB_ACTOR = "${GITHUB_ACTOR}"
         GITHUB_BASE_REF = "${GITHUB_BASE_REF}"
         GITHUB_HEAD_REF = "${GITHUB_HEAD_REF}"
@@ -71,8 +82,11 @@ target "github-metadata-action" {
         GITHUB_REPOSITORY_OWNER = "${GITHUB_REPOSITORY_OWNER}"
         GITHUB_RUN_ATTEMPT = "${GITHUB_RUN_ATTEMPT}"
         GITHUB_RUN_ID = "${GITHUB_RUN_ID}"
+        GITHUB_RUN_NUMBER = "${GITHUB_RUN_NUMBER}"
         GITHUB_SHA = "${GITHUB_SHA}"
+        GITHUB_TRIGGERING_ACTOR = "${GITHUB_TRIGGERING_ACTOR}"
         RUNNER_ARCH = "${RUNNER_ARCH}"
+        RUNNER_ENVIRONMENT = "${RUNNER_ENVIRONMENT}"
         RUNNER_NAME = "${RUNNER_NAME}"
         RUNNER_OS = "${RUNNER_OS}"
     }

@@ -91,7 +91,7 @@ jobs:
   "target": {
     "github-metadata-action": {
       "args": {
-        "GITHUB_ACTOR": "unknown_actor",
+        "GITHUB_ACTOR": "octocat",
         "GITHUB_BASE_REF": "main",
         "GITHUB_HEAD_REF": "unknown-branch",
         "GITHUB_JOB": "unknown_job_id",
@@ -103,8 +103,11 @@ jobs:
         "GITHUB_REPOSITORY_OWNER": "owner",
         "GITHUB_RUN_ATTEMPT": "0",
         "GITHUB_RUN_ID": "1658821493",
+        "GITHUB_RUN_NUMBER": "3",
         "GITHUB_SHA": "ffac537e6cbbf934b08745a378932722df287a53",
+        "GITHUB_TRIGGERING_ACTOR": "github-actions[bot]",
         "RUNNER_ARCH": "X64",
+        "RUNNER_ENVIRONMENT": "github-hosted",
         "RUNNER_NAME": "Hosted Agent",
         "RUNNER_OS": "Linux"
       }
