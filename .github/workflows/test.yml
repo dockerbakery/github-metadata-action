@@ -11,23 +11,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: docker/setup-buildx-action@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Test runs
+      - name: Run dockerbakery/github-metadata-action@${{ github.ref_name }}
         id: meta
         uses: ./
 
       - name: Action output
-        run: |
-          echo "${{ steps.meta.outputs.bake-file }}"
+        run: echo "${{ steps.meta.outputs.bake-file }}"
 
       - name: Action env
         run: |
           env | grep GITHUB_
           env | grep RUNNER_
 
-      - name: Validate
+      - name: Action bake file
         run: |
           docker buildx bake -f "${{ steps.meta.outputs.bake-file }}" --print github-metadata-action
+
+      - name: Build
+        uses: docker/bake-action@v6
+        with:
+          workdir: ./example
+          source: .
+          files: |
+            docker-bake.hcl
+            ${{ steps.meta.outputs.bake-file }}

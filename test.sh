@@ -58,7 +58,7 @@ echo "HELLO=world" >> "${GITHUB_ENV}"
 echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
 export GITHUB_METADATA_ACTION_GITHUB_TOKEN=$(gh auth token)
-export BUILDX_BAKE_ENTITLEMENTS_FS=1
+export BUILDX_BAKE_ENTITLEMENTS_FS=0
 
 cd example && {
     docker buildx bake -f ./docker-bake.hcl -f ../github-metadata-action.hcl --no-cache --print
