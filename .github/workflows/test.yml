@@ -44,6 +44,10 @@ jobs:
 
       - name: Build
         uses: docker/bake-action@v6
+        env:
+          DOCKER_BUILD_CHECKS_ANNOTATIONS: "false"
+          DOCKER_BUILD_SUMMARY: "false"
+          DOCKER_BUILD_RECORD_UPLOAD: "false"
         with:
           workdir: ./example
           source: .
