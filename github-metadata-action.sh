@@ -10,11 +10,13 @@ gh_set_env() {
 }
 
 # Inputs
-GITHUB_METADATA_ACTION_GITHUB_TOKEN="$1"
+export GITHUB_METADATA_ACTION_GITHUB_TOKEN="$1"
+export GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 
 # Main
 gh_group "Processing GitHub context"
 gh_set_env "GITHUB_METADATA_ACTION_GITHUB_TOKEN" "${GITHUB_METADATA_ACTION_GITHUB_TOKEN}"
+gh_set_env "GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL" "${GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL}"
 gh_set_output "bake-file" "${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
 echo "Output:"
 echo "- bake-file = ${GITHUB_ACTION_PATH}/github-metadata-action.hcl"
