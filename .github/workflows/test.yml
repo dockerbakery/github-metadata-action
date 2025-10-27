@@ -10,15 +10,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: docker/setup-buildx-action@v2
+      - uses: actions/checkout@v5
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            name/app
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
 
       - name: Run dockerbakery/github-metadata-action@${{ github.ref_name }}
-        id: meta
+        id: github-meta
         uses: ./
 
       - name: Action output
-        run: echo "${{ steps.meta.outputs.bake-file }}"
+        run: echo "${{ steps.github-meta.outputs.bake-file }}"
 
       - name: Action env
         run: |
@@ -27,7 +40,7 @@ jobs:
 
       - name: Action bake file
         run: |
-          docker buildx bake -f "${{ steps.meta.outputs.bake-file }}" --print github-metadata-action
+          docker buildx bake -f "${{ steps.github-meta.outputs.bake-file }}" --print github-metadata-action
 
       - name: Build
         uses: docker/bake-action@v6
@@ -37,3 +50,4 @@ jobs:
           files: |
             docker-bake.hcl
             ${{ steps.meta.outputs.bake-file }}
+            ${{ steps.github-meta.outputs.bake-file }}
