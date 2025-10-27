@@ -8,9 +8,9 @@ variable "GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL" {}
 
 variable "CI" { default = "true" }
 variable "GITHUB_ACTION" {}
-variable "GITHUB_ACTION_PATH" {}
-variable "GITHUB_ACTION_REPOSITORY" {}
-variable "GITHUB_ACTIONS" { default = "true" }
+# variable "GITHUB_ACTION_PATH" {}
+# variable "GITHUB_ACTION_REPOSITORY" {}
+# variable "GITHUB_ACTIONS" { default = "true" }
 variable "GITHUB_ACTOR" {}
 variable "GITHUB_ACTOR_ID" {}
 variable "GITHUB_API_URL" { default = "https://api.github.com" }
@@ -37,7 +37,7 @@ variable "GITHUB_RUN_ID" {}
 variable "GITHUB_RUN_NUMBER" {}
 variable "GITHUB_SERVER_URL" { default = "https://github.com" }
 variable "GITHUB_SHA" {}
-variable "GITHUB_STEP_SUMMARY" {}
+# variable "GITHUB_STEP_SUMMARY" {}
 variable "GITHUB_TRIGGERING_ACTOR" {}
 variable "GITHUB_WORKFLOW" {}
 variable "GITHUB_WORKFLOW_REF" {}
@@ -63,7 +63,7 @@ target "github-metadata-action" {
         "id=GITHUB_WORKFLOW_RUN_URL,env=GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL",
     ]
     contexts = {
-        GITHUB_ACTION_PATH = GITHUB_ACTION_PATH
+        # GITHUB_ACTION_PATH = GITHUB_ACTION_PATH
         GITHUB_WORKSPACE = GITHUB_WORKSPACE
         RUNNER_TEMP = RUNNER_TEMP
         RUNNER_TOOL_CACHE = RUNNER_TOOL_CACHE
@@ -71,8 +71,8 @@ target "github-metadata-action" {
     args = {
         CI = CI,
         GITHUB_ACTION = GITHUB_ACTION,
-        GITHUB_ACTION_REPOSITORY = GITHUB_ACTION_REPOSITORY,
-        GITHUB_ACTIONS = GITHUB_ACTIONS,
+        # GITHUB_ACTION_REPOSITORY = GITHUB_ACTION_REPOSITORY,
+        # GITHUB_ACTIONS = GITHUB_ACTIONS,
         GITHUB_ACTOR = GITHUB_ACTOR,
         GITHUB_ACTOR_ID = GITHUB_ACTOR_ID,
         GITHUB_API_URL = GITHUB_API_URL,
