@@ -6,6 +6,11 @@ on:
       - 'main'
       - 'v*'
 
+env:
+  DOCKER_BUILD_CHECKS_ANNOTATIONS: "false"
+  DOCKER_BUILD_SUMMARY: "false"
+  DOCKER_BUILD_RECORD_UPLOAD: "false"
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,14 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: |
-            name/app
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=sha
+          images: dockerbakery/github-metadata-action
 
       - name: Run dockerbakery/github-metadata-action@${{ github.ref_name }}
         id: github-meta
@@ -42,16 +40,23 @@ jobs:
         run: |
           docker buildx bake -f "${{ steps.github-meta.outputs.bake-file }}" --print github-metadata-action
 
-      - name: Build
+      - name: Build with local context
         uses: docker/bake-action@v6
-        env:
-          DOCKER_BUILD_CHECKS_ANNOTATIONS: "false"
-          DOCKER_BUILD_SUMMARY: "false"
-          DOCKER_BUILD_RECORD_UPLOAD: "false"
         with:
           workdir: ./example
           source: .
           files: |
-            docker-bake.hcl
+            ./docker-bake.hcl
             ${{ steps.meta.outputs.bake-file }}
             ${{ steps.github-meta.outputs.bake-file }}
+          no-cache: true
+
+      - name: Build with remote context (default)
+        uses: docker/bake-action@v6
+        with:
+          source: "{{defaultContext}}:example"
+          files: |
+            ./docker-bake.hcl
+            cwd://${{ steps.meta.outputs.bake-file }}
+            cwd://${{ steps.github-meta.outputs.bake-file }}
+          no-cache: true
