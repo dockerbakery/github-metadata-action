@@ -48,8 +48,8 @@ variable "RUNNER_DEBUG" {}
 variable "RUNNER_ENVIRONMENT" {}
 variable "RUNNER_NAME" {}
 variable "RUNNER_OS" {}
-# variable "RUNNER_TEMP" {}
-# variable "RUNNER_TOOL_CACHE" {}
+variable "RUNNER_TEMP" {}
+variable "RUNNER_TOOL_CACHE" {}
 
 # Targets
 target "github-metadata-action" {
@@ -65,8 +65,8 @@ target "github-metadata-action" {
     contexts = {
         GITHUB_ACTION_PATH = GITHUB_ACTION_PATH
         GITHUB_WORKSPACE = GITHUB_WORKSPACE
-        # RUNNER_TEMP = RUNNER_TEMP
-        # RUNNER_TOOL_CACHE = RUNNER_TOOL_CACHE
+        RUNNER_TEMP = RUNNER_TEMP
+        RUNNER_TOOL_CACHE = RUNNER_TOOL_CACHE
     }
     args = {
         CI = CI,
