@@ -4,6 +4,11 @@ GitHub Metadata Action for Docker Buildx Bake.
 
 ## Usage
 
+> [!IMPORTANT]
+> Starting from `v4`, it is recommended to use this action with `docker/bake-action`.
+>
+> To use this action without the requirement mentioned above, please set the `BUILDX_BAKE_ENTITLEMENTS_FS=0` environment variables or specify the `--allow fs=*` to the `docker buildx bake` command.
+
 ### Bake definition
 
 This action also handles a bake definition file that can be used with the Docker Bake action. You just have to declare an empty target named `github-metadata-action` and inherit from it.
@@ -13,7 +18,7 @@ This action also handles a bake definition file that can be used with the Docker
 target "docker-metadata-action" {}
 target "github-metadata-action" {}
 
-target "build" {
+target "default" {
   inherits = ["docker-metadata-action", "github-metadata-action"]
   context = "./"
   dockerfile = "Dockerfile"
@@ -72,7 +77,6 @@ jobs:
             ./docker-bake.hcl
             cwd://${{ steps.meta.outputs.bake-file }}
             cwd://${{ steps.github-meta.outputs.bake-file }}
-          targets: build
 ```
 
 ## Output
