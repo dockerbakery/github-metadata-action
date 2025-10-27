@@ -96,7 +96,6 @@ jobs:
     "github-metadata-action": {
       "context": ".",
       "contexts": {
-        "GITHUB_ACTION_PATH": "/home/runner/work/github-metadata-action/github-metadata-action/./",
         "GITHUB_WORKSPACE": "/home/runner/work/github-metadata-action/github-metadata-action",
         "RUNNER_TEMP": "/home/runner/work/_temp",
         "RUNNER_TOOL_CACHE": "/opt/hostedtoolcache"
@@ -104,9 +103,7 @@ jobs:
       "dockerfile": "Dockerfile",
       "args": {
         "CI": "true",
-        "GITHUB_ACTION": "meta",
-        "GITHUB_ACTIONS": "true",
-        "GITHUB_ACTION_REPOSITORY": "",
+        "GITHUB_ACTION": "__run_3",
         "GITHUB_ACTOR": "socheatsok78",
         "GITHUB_ACTOR_ID": "4363857",
         "GITHUB_API_URL": "https://api.github.com",
@@ -125,24 +122,24 @@ jobs:
         "GITHUB_REPOSITORY_OWNER_ID": "105844391",
         "GITHUB_RETENTION_DAYS": "90",
         "GITHUB_RUN_ATTEMPT": "1",
-        "GITHUB_RUN_ID": "18833940306",
-        "GITHUB_RUN_NUMBER": "86",
+        "GITHUB_RUN_ID": "18834994932",
+        "GITHUB_RUN_NUMBER": "101",
         "GITHUB_SERVER_URL": "https://github.com",
-        "GITHUB_SHA": "978ff20500d7b241bb13e7a4a74d70c5f4b31c49",
+        "GITHUB_SHA": "083674d92afe5066b3ebe415ca896c13aa0e3283",
         "GITHUB_TRIGGERING_ACTOR": "socheatsok78",
         "GITHUB_WORKFLOW": "test",
         "GITHUB_WORKFLOW_REF": "dockerbakery/github-metadata-action/.github/workflows/test.yml@refs/heads/v4",
-        "GITHUB_WORKFLOW_SHA": "978ff20500d7b241bb13e7a4a74d70c5f4b31c49",
+        "GITHUB_WORKFLOW_SHA": "083674d92afe5066b3ebe415ca896c13aa0e3283",
         "RUNNER_ARCH": "X64",
         "RUNNER_DEBUG": "",
         "RUNNER_ENVIRONMENT": "github-hosted",
-        "RUNNER_NAME": "GitHub Actions 1000000060",
+        "RUNNER_NAME": "GitHub Actions 1000000075",
         "RUNNER_OS": "Linux"
       },
       "secret": [
         {
           "id": "GITHUB_ENV",
-          "src": "/home/runner/work/_temp/_runner_file_commands/set_env_30874525-f2f7-4e7e-8b78-6a75232224aa"
+          "src": "/home/runner/work/_temp/_runner_file_commands/set_env_f6b84761-eb83-4366-bbc0-6767031c84ef"
         },
         {
           "id": "GITHUB_EVENT_PATH",
@@ -150,7 +147,7 @@ jobs:
         },
         {
           "id": "GITHUB_OUTPUT",
-          "src": "/home/runner/work/_temp/_runner_file_commands/set_output_30874525-f2f7-4e7e-8b78-6a75232224aa"
+          "src": "/home/runner/work/_temp/_runner_file_commands/set_output_f6b84761-eb83-4366-bbc0-6767031c84ef"
         },
         {
           "id": "GITHUB_TOKEN",
