@@ -22,7 +22,7 @@ variable "GITHUB_GRAPHQL_URL" { default = "https://api.github.com/graphql" }
 variable "GITHUB_HEAD_REF" {}
 variable "GITHUB_JOB" {}
 variable "GITHUB_OUTPUT" {}
-variable "GITHUB_PATH" {}
+# variable "GITHUB_PATH" {}
 variable "GITHUB_REF" {}
 variable "GITHUB_REF_NAME" {}
 variable "GITHUB_REF_PROTECTED" {}
@@ -48,16 +48,16 @@ variable "RUNNER_DEBUG" {}
 variable "RUNNER_ENVIRONMENT" {}
 variable "RUNNER_NAME" {}
 variable "RUNNER_OS" {}
-variable "RUNNER_TEMP" {}
-variable "RUNNER_TOOL_CACHE" {}
+# variable "RUNNER_TEMP" {}
+# variable "RUNNER_TOOL_CACHE" {}
 
 # Targets
 target "github-metadata-action" {
     secret = [
         "id=GITHUB_ENV,type=file,src=${GITHUB_ENV}",
         "id=GITHUB_EVENT_PATH,type=file,src=${GITHUB_EVENT_PATH}",
-        "id=GITHUB_PATH,type=file,src=${GITHUB_PATH}",
-        "id=GITHUB_STEP_SUMMARY,type=file,src=${GITHUB_STEP_SUMMARY}",
+        # "id=GITHUB_PATH,type=file,src=${GITHUB_PATH}",
+        # "id=GITHUB_STEP_SUMMARY,type=file,src=${GITHUB_STEP_SUMMARY}",
         "id=GITHUB_OUTPUT,type=file,src=${GITHUB_OUTPUT}",
         "id=GITHUB_TOKEN,env=GITHUB_METADATA_ACTION_GITHUB_TOKEN",
         "id=GITHUB_WORKFLOW_RUN_URL,env=GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL",
@@ -65,8 +65,8 @@ target "github-metadata-action" {
     contexts = {
         GITHUB_ACTION_PATH = GITHUB_ACTION_PATH
         GITHUB_WORKSPACE = GITHUB_WORKSPACE
-        RUNNER_TEMP = RUNNER_TEMP
-        RUNNER_TOOL_CACHE = RUNNER_TOOL_CACHE
+        # RUNNER_TEMP = RUNNER_TEMP
+        # RUNNER_TOOL_CACHE = RUNNER_TOOL_CACHE
     }
     args = {
         CI = CI,
