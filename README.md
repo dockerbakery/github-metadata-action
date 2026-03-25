@@ -49,14 +49,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: |
             name/app
@@ -69,9 +72,9 @@ jobs:
 
       - name: GitHub meta
         id: github-meta
-        uses: dockerbakery/github-metadata-action@v4
+        uses: dockerbakery/github-metadata-action@v5
 
-      - uses: docker/bake-action@v6
+      - uses: docker/bake-action@v7
         with:
           files: |
             ./docker-bake.hcl
@@ -94,7 +97,7 @@ jobs:
   },
   "target": {
     "github-metadata-action": {
-      "context": ".",
+      "context": "https://github.com/dockerbakery/github-metadata-action.git#9371988e4cedb161797dc0ce652335f65632c91c:example",
       "contexts": {
         "GITHUB_WORKSPACE": "/home/runner/work/github-metadata-action/github-metadata-action",
         "RUNNER_TEMP": "/home/runner/work/_temp",
@@ -103,7 +106,7 @@ jobs:
       "dockerfile": "Dockerfile",
       "args": {
         "CI": "true",
-        "GITHUB_ACTION": "__run_3",
+        "GITHUB_ACTION": "__docker_bake-action_2",
         "GITHUB_ACTOR": "socheatsok78",
         "GITHUB_ACTOR_ID": "4363857",
         "GITHUB_API_URL": "https://api.github.com",
@@ -112,8 +115,8 @@ jobs:
         "GITHUB_GRAPHQL_URL": "https://api.github.com/graphql",
         "GITHUB_HEAD_REF": "",
         "GITHUB_JOB": "test",
-        "GITHUB_REF": "refs/heads/v4",
-        "GITHUB_REF_NAME": "v4",
+        "GITHUB_REF": "refs/heads/v5",
+        "GITHUB_REF_NAME": "v5",
         "GITHUB_REF_PROTECTED": "false",
         "GITHUB_REF_TYPE": "branch",
         "GITHUB_REPOSITORY": "dockerbakery/github-metadata-action",
@@ -122,24 +125,25 @@ jobs:
         "GITHUB_REPOSITORY_OWNER_ID": "105844391",
         "GITHUB_RETENTION_DAYS": "90",
         "GITHUB_RUN_ATTEMPT": "1",
-        "GITHUB_RUN_ID": "18834994932",
-        "GITHUB_RUN_NUMBER": "101",
+        "GITHUB_RUN_ID": "23530597216",
+        "GITHUB_RUN_NUMBER": "116",
         "GITHUB_SERVER_URL": "https://github.com",
-        "GITHUB_SHA": "083674d92afe5066b3ebe415ca896c13aa0e3283",
+        "GITHUB_SHA": "9371988e4cedb161797dc0ce652335f65632c91c",
         "GITHUB_TRIGGERING_ACTOR": "socheatsok78",
         "GITHUB_WORKFLOW": "test",
-        "GITHUB_WORKFLOW_REF": "dockerbakery/github-metadata-action/.github/workflows/test.yml@refs/heads/v4",
-        "GITHUB_WORKFLOW_SHA": "083674d92afe5066b3ebe415ca896c13aa0e3283",
+        "GITHUB_WORKFLOW_REF": "dockerbakery/github-metadata-action/.github/workflows/test.yml@refs/heads/v5",
+        "GITHUB_WORKFLOW_RUN_URL": "https://github.com/dockerbakery/github-metadata-action/actions/runs/23530597216",
+        "GITHUB_WORKFLOW_SHA": "9371988e4cedb161797dc0ce652335f65632c91c",
         "RUNNER_ARCH": "X64",
         "RUNNER_DEBUG": "",
         "RUNNER_ENVIRONMENT": "github-hosted",
-        "RUNNER_NAME": "GitHub Actions 1000000075",
+        "RUNNER_NAME": "GitHub Actions 1000000140",
         "RUNNER_OS": "Linux"
       },
       "secret": [
         {
           "id": "GITHUB_ENV",
-          "src": "/home/runner/work/_temp/_runner_file_commands/set_env_f6b84761-eb83-4366-bbc0-6767031c84ef"
+          "src": "/home/runner/work/_temp/_runner_file_commands/set_env_72cd0150-198e-4780-8dfc-2a440321a8ad"
         },
         {
           "id": "GITHUB_EVENT_PATH",
@@ -147,15 +151,11 @@ jobs:
         },
         {
           "id": "GITHUB_OUTPUT",
-          "src": "/home/runner/work/_temp/_runner_file_commands/set_output_f6b84761-eb83-4366-bbc0-6767031c84ef"
+          "src": "/home/runner/work/_temp/_runner_file_commands/set_output_72cd0150-198e-4780-8dfc-2a440321a8ad"
         },
         {
           "id": "GITHUB_TOKEN",
-          "env": "GITHUB_METADATA_ACTION_GITHUB_TOKEN"
-        },
-        {
-          "id": "GITHUB_WORKFLOW_RUN_URL",
-          "env": "GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL"
+          "env": "***"
         }
       ]
     }
