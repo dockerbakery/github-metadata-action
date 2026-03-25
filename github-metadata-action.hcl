@@ -7,12 +7,12 @@ variable "GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL" {}
 # https://docs.github.com/en/actions/reference/workflows-and-actions/variables#default-environment-variables
 
 variable "CI" { default = "true" }
+# variable "GITHUB_ACTION_PATH" {} # disabled
+# variable "GITHUB_ACTION_REPOSITORY" {} # disabled
 variable "GITHUB_ACTION" {}
-# variable "GITHUB_ACTION_PATH" {}
-# variable "GITHUB_ACTION_REPOSITORY" {}
-# variable "GITHUB_ACTIONS" { default = "true" }
-variable "GITHUB_ACTOR" {}
+# variable "GITHUB_ACTIONS" { default = "true" } # disabled
 variable "GITHUB_ACTOR_ID" {}
+variable "GITHUB_ACTOR" {}
 variable "GITHUB_API_URL" { default = "https://api.github.com" }
 variable "GITHUB_BASE_REF" {}
 variable "GITHUB_ENV" {}
@@ -22,26 +22,26 @@ variable "GITHUB_GRAPHQL_URL" { default = "https://api.github.com/graphql" }
 variable "GITHUB_HEAD_REF" {}
 variable "GITHUB_JOB" {}
 variable "GITHUB_OUTPUT" {}
-# variable "GITHUB_PATH" {}
-variable "GITHUB_REF" {}
+# variable "GITHUB_PATH" {} # disabled
 variable "GITHUB_REF_NAME" {}
 variable "GITHUB_REF_PROTECTED" {}
 variable "GITHUB_REF_TYPE" {}
-variable "GITHUB_REPOSITORY" {}
+variable "GITHUB_REF" {}
 variable "GITHUB_REPOSITORY_ID" {}
-variable "GITHUB_REPOSITORY_OWNER" {}
 variable "GITHUB_REPOSITORY_OWNER_ID" {}
+variable "GITHUB_REPOSITORY_OWNER" {}
+variable "GITHUB_REPOSITORY" {}
 variable "GITHUB_RETENTION_DAYS" {}
 variable "GITHUB_RUN_ATTEMPT" {}
 variable "GITHUB_RUN_ID" {}
 variable "GITHUB_RUN_NUMBER" {}
 variable "GITHUB_SERVER_URL" { default = "https://github.com" }
 variable "GITHUB_SHA" {}
-# variable "GITHUB_STEP_SUMMARY" {}
+# variable "GITHUB_STEP_SUMMARY" {} # disabled
 variable "GITHUB_TRIGGERING_ACTOR" {}
-variable "GITHUB_WORKFLOW" {}
 variable "GITHUB_WORKFLOW_REF" {}
 variable "GITHUB_WORKFLOW_SHA" {}
+variable "GITHUB_WORKFLOW" {}
 variable "GITHUB_WORKSPACE" {}
 variable "RUNNER_ARCH" {}
 variable "RUNNER_DEBUG" {}
@@ -53,15 +53,6 @@ variable "RUNNER_TOOL_CACHE" {}
 
 # Targets
 target "github-metadata-action" {
-    secret = [
-        "id=GITHUB_ENV,type=file,src=${GITHUB_ENV}",
-        "id=GITHUB_EVENT_PATH,type=file,src=${GITHUB_EVENT_PATH}",
-        # "id=GITHUB_PATH,type=file,src=${GITHUB_PATH}",
-        # "id=GITHUB_STEP_SUMMARY,type=file,src=${GITHUB_STEP_SUMMARY}",
-        "id=GITHUB_OUTPUT,type=file,src=${GITHUB_OUTPUT}",
-        "id=GITHUB_TOKEN,env=${GITHUB_METADATA_ACTION_GITHUB_TOKEN}",
-        "id=GITHUB_WORKFLOW_RUN_URL,env=${GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL}",
-    ]
     contexts = {
         # GITHUB_ACTION_PATH = GITHUB_ACTION_PATH
         GITHUB_WORKSPACE = GITHUB_WORKSPACE
@@ -71,8 +62,8 @@ target "github-metadata-action" {
     args = {
         CI = CI,
         GITHUB_ACTION = GITHUB_ACTION,
-        # GITHUB_ACTION_REPOSITORY = GITHUB_ACTION_REPOSITORY,
-        # GITHUB_ACTIONS = GITHUB_ACTIONS,
+        # GITHUB_ACTION_REPOSITORY = GITHUB_ACTION_REPOSITORY, # disabled
+        # GITHUB_ACTIONS = GITHUB_ACTIONS, # disabled
         GITHUB_ACTOR = GITHUB_ACTOR,
         GITHUB_ACTOR_ID = GITHUB_ACTOR_ID,
         GITHUB_API_URL = GITHUB_API_URL,
@@ -98,6 +89,7 @@ target "github-metadata-action" {
         GITHUB_TRIGGERING_ACTOR = GITHUB_TRIGGERING_ACTOR,
         GITHUB_WORKFLOW = GITHUB_WORKFLOW,
         GITHUB_WORKFLOW_REF = GITHUB_WORKFLOW_REF,
+        GITHUB_WORKFLOW_RUN_URL = GITHUB_METADATA_ACTION_GITHUB_WORKFLOW_RUN_URL,
         GITHUB_WORKFLOW_SHA = GITHUB_WORKFLOW_SHA,
         RUNNER_ARCH = RUNNER_ARCH,
         RUNNER_DEBUG = RUNNER_DEBUG,
@@ -105,4 +97,12 @@ target "github-metadata-action" {
         RUNNER_NAME = RUNNER_NAME,
         RUNNER_OS = RUNNER_OS,
     }
+    secret = [
+        "id=GITHUB_ENV,type=file,src=${GITHUB_ENV}",
+        "id=GITHUB_EVENT_PATH,type=file,src=${GITHUB_EVENT_PATH}",
+        "id=GITHUB_OUTPUT,type=file,src=${GITHUB_OUTPUT}",
+        # "id=GITHUB_PATH,type=file,src=${GITHUB_PATH}",
+        # "id=GITHUB_STEP_SUMMARY,type=file,src=${GITHUB_STEP_SUMMARY}",
+        "id=GITHUB_TOKEN,env=${GITHUB_METADATA_ACTION_GITHUB_TOKEN}",
+    ]
 }
